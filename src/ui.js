@@ -3,18 +3,24 @@ import './styles/styles.css';
 const appContainer = document.getElementById('app');
 let mainContainer;
 
-function createSearchBar() {
+function createSearchBar(options) {
   const searchBar = document.createElement('form');
   searchBar.classList.add('search');
-  searchBar.innerHTML = "<input class='searchi' type='search' name='searchTerm'><button>Search</button>";
+  searchBar.innerHTML = "<input type='search' class='searchi' name='searchTerm'><button>Search</button>";
+
+  searchBar.addEventListener('submit', (e) => {
+    e.preventDefault();
+    options.onSearch(e.target.searchTerm.value);
+  });
+
   return searchBar;
 }
 
-function createHeader() {
+function createHeader({ onSearch }) {
   const header = document.createElement('header');
   header.classList.add('hero');
   header.innerHTML = '<h1 class="title">The Movie DB Trial</h1>';
-  header.appendChild(createSearchBar());
+  header.appendChild(createSearchBar({ onSearch }));
   return header;
 }
 
@@ -22,7 +28,7 @@ function createMovie(movie) {
   const movieElement = document.createElement('div');
   movieElement.classList.add('movie');
   movieElement.innerHTML = `<h2>${movie.title}</h2><p>${movie.overview}</p>`;
-  const img = `https://image.imdb.org/t/p/original/${movie.backdrop_path}`;
+  const img = `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`;
   movieElement.style.backgroundImage = `url(${img})`;
   return movieElement;
 }
@@ -33,14 +39,14 @@ function createMain() {
   return main;
 }
 
-function renderPage() {
+function renderPage({ onSearch }) {
   appContainer.innerHTML = '';
-  appContainer.appendChild(createHeader());
+  appContainer.appendChild(createHeader({ onSearch }));
   mainContainer = createMain();
   appContainer.appendChild(mainContainer);
 }
 
-function renderMovies(movies = [1, 2, 3, 4, 5]) {
+function renderMovies(movies) {
   mainContainer.innerHTML = '';
   movies.forEach((movie) => {
     mainContainer.appendChild(createMovie(movie));

@@ -5,6 +5,16 @@ body {
   padding: 0;
 }
 
+* {
+  box-sizing: border-box;
+  /* font: 16px; */
+  font-family: sans-serif;
+}
+
+#app {
+  background-color: #2e264d;
+}
+
 .hero {
   background: linear-gradient(to bottom right, rgb(11, 2, 63), rgb(102, 155, 255), rgb(249, 40, 40)) ;
   display: flex;
@@ -12,17 +22,21 @@ body {
   padding: 50px 100px;
   flex-direction: column;
   align-items: center;
+  box-shadow: rgb(7, 1, 32) 5px 0px 20px;
 }
 
 .search {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 500px;
+  max-width: fit-content;
 }
 
 .search .searchi {
   max-width: 500px;
-  padding: 3px 8px;
+  padding: 5px 10px;
+  box-shadow: rgb(28, 26, 36) 5px 5px 10px;
 }
 
 .hero .title {
@@ -37,44 +51,74 @@ body {
   border: none;
   background-color: rgb(47, 92, 239);
   color: #fff;
-  text-shadow: rgb(28, 26, 36) 5px 5px 10px;
+  text-shadow: rgb(4, 1, 20) 5px 5px 10px;
+  box-shadow: rgb(28, 26, 36) 5px 5px 10px;
 }
 
 .body {
   display: flex;
-  gap: 20px;
+  gap: 30px 10px;
+  /* flex-direction: row; */
   align-items: center;
-  justify-content: center;
-  width: 90px;
+  max-width: fit-content;
   margin: auto;
   flex-wrap: wrap;
   padding: 30px 50px;
 }
 
 .movie {
+  height: 200px;
+  width: 310px;
   display: flex;
-  /* padding: 90px 90px; */
-  gap: 20px;
+  align-items: center;
   justify-content: center;
   padding: 10px;
+  background-color: #5c9fe8b0;
   text-align: center;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 300px;
-  margin: 10px;
-  border-radius: 5px;
-  background-color: #669bff;
   position: relative;
+  box-shadow: #00000b 5px 0 10px;
 }
 
 .movie h2 {
-  background-color: ;
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
   margin: 0;
-  padding: 10px;
-  color: #fff;
+  color: white;
+  padding: 10px 0;
+  background-color: #26265682;
+  font-size: 16px;
+}
+
+.movie p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  max-height: fit-content;
+  background-color: rgba(52, 58, 244, 0.548);
+  color: rgb(184, 234, 255);
+  margin: 0;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 20px;
+  padding: 30px 20px;
+  transition: opacity 0.2s linear;
+}
+
+.movie:hover p {
+  opacity: 1;
+}
+
+.movie:hover h2 {
+  opacity: 0;
 }
